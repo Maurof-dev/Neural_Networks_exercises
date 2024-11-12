@@ -169,7 +169,7 @@ def inputer():
 
 
 
-def play_game(function,N,size,nlayers,nneurons,P,xmin,xmax,wnoise):
+def model_builder(function,N,size,nlayers,nneurons,P,xmin,xmax,wnoise):
     N, nlayers, nneurons, size, P = int(N), int(nlayers), int(nneurons), float(size), int(P)
     model = NeuralNetwork(nlayers,nneurons)
     function = sympify(function) #convert str into function
@@ -184,7 +184,7 @@ def play_game(function,N,size,nlayers,nneurons,P,xmin,xmax,wnoise):
             continue
         if answer.lower() == 'y':
             get = inputer() # input N, size, epochs, xmin and xmax
-            return play_game(function,get[0],get[1],get[2],get[3],get[4],get[5],get[6],get[7])
+            return model_builder(function,get[0],get[1],get[2],get[3],get[4],get[5],get[6],get[7])
         if answer.lower() == 'n':
             print(f'Quit altogether or replot?\n')
             while True:
@@ -321,5 +321,5 @@ if __name__ == "__main__":
     print('with noise = ',noise)
 
     
-    play_game(args.function,ninputs,size,nlayers,nneurons,pepochs,xmin,xmax,noise)
+    model_builder(args.function,ninputs,size,nlayers,nneurons,pepochs,xmin,xmax,noise)
     
